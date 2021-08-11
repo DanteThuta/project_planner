@@ -7,7 +7,7 @@
                 <p v-if="showDetail">{{project.detail}}</p>
            </div>
            <div>
-               <span class="material-icons">
+               <span class="material-icons" @click="deleteProject">
                 delete
                 </span>
                 <span class="material-icons">
@@ -27,15 +27,27 @@ export default {
     data(){
         return{
             showDetail:false,
+            api : 'http://localhost:3000/projects',
         }
     },
     props: ['project'],
     methods:{
-        // showDetail(){
-        //     this.showDetail = true;
-        // }
+        deleteProject(){
+            // Making a Variable for api link and project ID
+            let delPrj = this.api + "/" + this.project.id;
+
+            fetch(delPrj,{method:"DELETE"})
+            .then(()=>{
+                //Id must be carried to Home page for Web Page Deletion
+                this.$emit("delete",this.project.id)
+            })
+            .catch((err)=>{
+                console.log(err);
+            })
+            // console.log(delPrj);
+        }
     }
-}
+} 
 
 </script>
 
