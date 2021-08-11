@@ -1,10 +1,11 @@
 <template>
-    <div class="project">
+    <div class="project" :class="{complete:project.complete}">
         
        <div class="flexing">
            <div>
                <h3 @click="showDetail=!showDetail">{{project.title}}</h3>
                 <p v-if="showDetail">{{project.detail}}</p>
+                <!-- {{project.complete}} -->
            </div>
            <div>
                <span class="material-icons" @click="deleteProject">
@@ -35,8 +36,8 @@ export default {
         deleteProject(){
             // Making a Variable for api link and project ID
             let delPrj = this.api + "/" + this.project.id;
-
-            fetch(delPrj,{method:"DELETE"})
+            
+            fetch(delPrj,{method:"DELETE"})//code to Delete JSon data from server
             .then(()=>{
                 //Id must be carried to Home page for Web Page Deletion
                 this.$emit("delete",this.project.id)
@@ -84,5 +85,9 @@ export default {
     h3{
         color: indianred;
         cursor: pointer;
+    }
+
+    .complete{
+        border-left-color: green;
     }
 </style>
