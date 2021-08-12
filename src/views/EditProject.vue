@@ -54,7 +54,7 @@ export default {
                         detail : this.detail
                     }
                 )
-            })
+            } )
             .then(()=>{
                 // to redirect
                 this.$router.push("/")
