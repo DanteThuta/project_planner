@@ -1,3 +1,8 @@
 Guidde (9) 
 Lecutures
-1,2,3,4,5,6
+1,2,3,4,5,6,7
+
+
+First Ques
+1. why Home is copied into SingleComponent.Vue
+2. 

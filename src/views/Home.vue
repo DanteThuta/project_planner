@@ -34,7 +34,7 @@ export default {
       let findProject = this.projects.find(project=>{
         return project.id === id;
       })  
-      findProject.complete =! findProject.complete;
+    findProject.complete =! findProject.complete;
     }
   },
   mounted(){

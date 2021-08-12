@@ -1,11 +1,11 @@
 <template>
     <h1>Add Project </h1>
-    <form action="">
+    <form @submit.prevent="addProject">
         <label for="">Project Title</label>
-        <input type="text"/>
+        <input type="text" v-model="title"/>
 
         <label for="">Project Detail</label>
-        <input type="text"/>
+        <input type="text" v-model="detail"/>
 
         <button>
             Add
@@ -16,12 +16,46 @@
 
 <script>
 export default {
+    data(){
+        return{
+            title:'',
+            detail:'',
+        }
+    },
+    methods:{
+        addProject(){
+            // console.log(this.title,this.detail);
+            fetch('http://localhost:3000/projects',{
+                method: "POST",
+                headers:{
+                    "Content-Type" : "application/json"
+                },
+                body:JSON.stringify(
+                    {
+                        title : this.title,
+                        detail: this.detail,
+                        complete: false   
+                    }
+                )
+            })
+            .then(()=>{
+                // to redirect to Project Page
+                this.$router.push({name:'Home'});
+            })
+            .catch((err)=>{
+                console.log(err);
+            })
 
+        }
+    }
 }
 </script>
 
 <style>
 
+    h1{
+        color: lightcoral;
+    }
     form{
         background-color: #272727;
         padding: 10px;
@@ -38,6 +72,7 @@ export default {
     font-weight: bold;
     letter-spacing: 1px;
     margin: 20px 0 20px 0;
+    text-align: left;
     }
 
     input{
@@ -57,7 +92,7 @@ export default {
 
         background-color: #00ce89;
         color: #272727;
-        padding: 10px;
+        padding: 10px 20px ;
         border: 0;
         border-radius: 10px
         ;
