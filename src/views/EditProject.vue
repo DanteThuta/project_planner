@@ -1,7 +1,7 @@
 <template>
   <h1>Edit Project {{id}}</h1>
 
-  <form @submit.prevent="addProject">
+  <form @submit.prevent="updateProject">
         <label for="">Edit Project Title</label>
         <input type="text" v-model="title"/>
 
@@ -9,7 +9,7 @@
         <input type="text" v-model="detail"/>
 
         <button>
-            Edit
+            Update
         </button>
     </form>
 </template>
@@ -38,6 +38,32 @@ export default {
         .catch((err)=>{
             console.log(err);
         })
+    },
+    methods:{
+        //Update Process for Project on EditProject Page
+        updateProject(){
+            // console.log('http://localhost:3000/projects/'+ this.id);
+            fetch('http://localhost:3000/projects/'+ this.id,{
+                method:"PATCH",
+                headers:{
+                    "Content-Type" : "application/json"
+                },
+                body:JSON.stringify(
+                    {
+                        title : this.title,
+                        detail : this.detail
+                    }
+                )
+            })
+            .then(()=>{
+                // to redirect
+                this.$router.push("/")
+            })
+            .catch((err)=>{
+                console.log(err);
+            })
+
+        }
     }
     
 }
