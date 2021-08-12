@@ -14,7 +14,7 @@
                 <span class="material-icons">
                 edit
                 </span>
-                <span class="material-icons">
+                <span class="material-icons" @click="completeProject">
                 done_outline
                 </span>
            </div>
@@ -28,14 +28,14 @@ export default {
     data(){
         return{
             showDetail:false,
-            api : 'http://localhost:3000/projects',
+            api : 'http://localhost:3000/projects/',
         }
     },
     props: ['project'],
     methods:{
         deleteProject(){
             // Making a Variable for api link and project ID
-            let delPrj = this.api + "/" + this.project.id;
+            let delPrj = this.api + this.project.id;
             
             fetch(delPrj,{method:"DELETE"})//code to Delete JSon data from server
             .then(()=>{
@@ -46,6 +46,26 @@ export default {
                 console.log(err);
             })
             // console.log(delPrj);
+        },
+        completeProject(){
+            let updateCompleteProject = this.api + this.project.id;
+            fetch(updateCompleteProject,{
+                method:"PATCH",
+                headers:{
+                    "Content-Type" : "application/json"
+                },
+                body:JSON.stringify(
+                    {
+                        complete: !this.project.complete
+                    }
+                )
+            })
+            .then(()=>{
+                this.$emit("complete",this.project.id)
+            })
+            .catch((err)=>{
+                console.log(err);
+            })
         }
     }
 } 
