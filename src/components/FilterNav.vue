@@ -29,10 +29,12 @@ export default {
     font-size: 12px;
     text-transform: uppercase;
     margin-right: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     letter-spacing: 1px;
     font-weight: bold;
     cursor: pointer;
+
+    
 }
   
     /* need to put together to Work?  */
@@ -41,6 +43,8 @@ export default {
         border: 2px solid lightcoral;
         border-color: lightcoral;
         font-size: 14px;
+
+       
         /* opacity: 0; */
     }
 </style>
