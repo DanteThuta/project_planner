@@ -94,7 +94,8 @@ export default {
         color: #272727;
         padding: 10px 20px ;
         border: 0;
-        border-radius: 10px
-        ;
+        border-radius: 10px;
+        font-family: sans-serif;
+        font-weight: bold;
     }
 </style>

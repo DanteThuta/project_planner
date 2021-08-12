@@ -11,9 +11,13 @@
                <span class="material-icons" @click="deleteProject">
                 delete
                 </span>
-                <span class="material-icons">
-                edit
-                </span>
+                <!-- to carry the Id to Edit Project -->
+                <router-link :to="{name:'EditProject',params:{id:project.id}}">
+                        <span class="material-icons">
+                            edit
+                        </span>
+                </router-link>
+                
                 <span class="material-icons" @click="completeProject">
                 done_outline
                 </span>
@@ -100,7 +104,9 @@ export default {
     span:hover{
         cursor: pointer;
         color: #777;
+        transform: scale(1.2);
     }
+
 
     h3{
         color: indianred;
